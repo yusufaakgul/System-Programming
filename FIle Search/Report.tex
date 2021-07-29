@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\setlist{leftmargin=5.5mm}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\title{YUSUF AKGÜL}
+    \author{CSE 344}
+\date{Homework 1}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Requirements}
+
+\setlength{\parindent}{8ex}
+\hspace{\parindent} I have successfully implemented all the desired features in this homework. There is no warning that comes from -Wall flag or memory leak showed by valgrind including CTRL-C interruption signal. \par
+\section{Design Decisions}
+
+\begin{enumerate}[label=\alph*.), leftmargin=1.5\parindent]
+  \item When starting the assignment, I created a struct according to the criteria to be searched. I created a separate inner struct to know what properties were used. If the user inputs invalid input, I terminated the program. I just checked the validity of the criteria. I did not check the values taken by the criteria, because if they were wrong, there would be no problem. In this way, I finished the input part.
+  \item I created the int volatile style global variable. I am changing this variable when the ctrl-c signal arrives. I use this signal where necessary, and do the desired action. When CTRL-C is pressed, the program leaves whatever it is doing, and frees the memory created by returning to the machine as soon as possible.
+  \item I implemented everything I can think of for the Regex + process. More than one + can be entered side by side. The uppercase letter does not matter. In case + is at the head, my function is return 1, so negative.
+  \item I implemented a deque for the print file system. In order to remove both from the beginning and the end, and to print the path using the depth, I have specified the details below.
+  
+\end{enumerate}
+\newpage
+\section{Algorithms}
+
+\setlength{\parindent}{5ex}
+\hspace{\parindent}\textbf{Searching}
+
+\hspace{\parindent} My algorithm is trying all the files in the given path one by one in a recursive way. If the type of the file is directory, it insert  the deque. If the file has the searched requirements, it prints the file with its path on the screen.Then algorithm continues to search for files until there are no files left to search. \par
+
+\setlength{\parindent}{5ex}
+\hspace{}\textbf{Printing Founded Files}
+
+\hspace{\parindent} While printing, I used a double ended queue to control the whole path. If the file type is directory then added to the end of the queue and continues searching. If  file has required conditions that we search, I print the paths in the queue properly by making the necessary depth calculations. By doing this, I do not reprint the same path for the next file. If the size of the queue is not 0 when coming back from the directory, it is understood that the file we are looking for in that directory is not and I remove that directory from the queue. \par
+
+\section{Input Outputs}
+
+\hspace{} When I do ctrl + c while the program is running, then the output;  "Stopped by signal `SIGINT' and all resources to return the system" \\
+If path is not entered then the output: "-w (path) is mandatory parameter" \\
+If parameters are missing then the output : "At least one criteria must be employed (-f, -b, -t, -p, -l)" \\
+If an unknown parameter is entered then the output : "unknown option" \\ \\
+If the file is found in the valid inputs, it prints correctly.
+\par
+
+
+
+
+\end{document}
+
+
+
+
